@@ -128,10 +128,13 @@ class TradingDatabase:
     
     def save_trade(self, trade_type: str, price: float, amount: float, 
                    total_value: float, fee: float = 0, order_id: str = None, 
-                   success: bool = True, error_message: str = None) -> int:
+                   success: bool = True, error_message: str = None, trade_time: str = None) -> int:
         """실제 거래 내역을 데이터베이스에 저장"""
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.cursor()
+            
+            # 거래 시간 처리 (전달받은 시간이 있으면 사용, 없으면 현재 시간)
+            trade_timestamp = trade_time if trade_time else datetime.now().isoformat()
             
             cursor.execute('''
                 INSERT INTO actual_trades (
@@ -139,7 +142,7 @@ class TradingDatabase:
                     fee, order_id, success, error_message
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
             ''', (
-                datetime.now().isoformat(),
+                trade_timestamp,
                 trade_type,
                 price,
                 amount, 
