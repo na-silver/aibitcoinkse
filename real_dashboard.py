@@ -339,7 +339,7 @@ def render_ai_analysis_logs(ai_logs_df):
                 analysis_reason = row.get('ai_reason', '')
                 if analysis_reason:
                     st.markdown(f"""
-                    <div style="background: #1A1A1A; padding: 1rem; border-radius: 10px; border: 1px solid #333; margin: 0.5rem 0; font-family: 'Courier New', monospace; font-size: 0.9rem; white-space: pre-wrap;">
+                    <div style="background: #1A1A1A; color: #FFFFFF; padding: 1rem; border-radius: 10px; border: 1px solid #333; margin: 0.5rem 0; font-family: 'Courier New', monospace; font-size: 0.9rem; white-space: pre-wrap;">
 {analysis_reason}
                     </div>
                     """, unsafe_allow_html=True)
