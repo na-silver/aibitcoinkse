@@ -1,0 +1,4 @@
+# 📊 AI Trading Dashboard - DB 조회용
+streamlit>=1.28.0
+pandas>=2.0.0
+plotly>=5.17.0 
